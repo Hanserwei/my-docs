@@ -3,6 +3,7 @@ import { set_sidebar } from './utils/auto_sidebar.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/my-docs/",
   title: "Hanser的笔记网站",
   description: "一个基于vitepress的站点",
   themeConfig: {
