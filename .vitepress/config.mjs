@@ -4,10 +4,13 @@ import { set_sidebar } from './utils/auto_sidebar.mjs'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/my-docs/",
+  markdown: {lineNumbers: true},
   title: "Hanser的笔记网站",
   description: "一个基于vitepress的站点",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    outlineTitle: "文章目录",
+    outline: [2,4],
     nav: [
       { text: '家', link: '/' },
     ],
