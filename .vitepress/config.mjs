@@ -9,6 +9,7 @@ export default defineConfig({
   description: "一个基于vitepress的站点",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/image/logo.svg',
     outlineTitle: "文章目录",
     outline: [2,4],
     nav: [
