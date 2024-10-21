@@ -48,6 +48,12 @@ export default defineConfig({
           { text: 'PVE使用技巧', link: '/guide/PVE/PVE使用技巧' },
         ]
       },
+      {
+        text: '科学上网篇',
+        items: [
+          {text:'科学上网教程',link:'/guide/科学上网/科学上网'}
+        ]
+      }
     ],
 
     socialLinks: [
