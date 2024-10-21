@@ -1,5 +1,4 @@
 # python的基础学习笔记
-## 第一部分 python中的常识
 
 - 字面量
 
@@ -855,6 +854,419 @@
 
 - python中的函数
 
-- python中的匿名函数
+  在 Python 中，**函数**是用于组织和封装代码块的方式，可以多次调用以避免代码重复。函数通过 `def` 关键字来定义，并可以接受参数、返回值。Python 函数可以是带参数的，也可以不带参数，还可以有默认参数、可变长度参数等特性。
+
+  ### 1. **定义函数的基本语法**
+
+  ```python
+  def 函数名(参数列表):
+      """文档字符串，可选"""
+      函数体
+      return 返回值  # 可选
+  ```
+
+  - **`def`**：定义函数的关键字。
+  - **函数名**：遵循 Python 标识符命名规则的名称。
+  - **参数列表**：函数接收的参数，可选。
+  - **函数体**：包含函数要执行的代码块，必须缩进。
+  - **`return`**：用于返回函数的结果，函数可以返回一个或多个值，若没有 `return` 语句，默认返回 `None`。
+
+  ### 2. **示例：定义一个简单的函数**
+
+  ```python
+  def greet():
+      print("Hello, world!")
+  ```
+
+  - 这是一个没有参数和返回值的简单函数。
+  - 调用函数时，只需使用函数名并加上括号即可：
+
+  ```python
+  greet()  # 输出: Hello, world!
+  ```
+
+  ### 3. **带参数的函数**
+
+  可以通过在函数定义中指定参数，来向函数传递数据。调用函数时，必须提供对应的参数值。
+
+  #### 示例：
+  ```python
+  def greet(name):
+      print(f"Hello, {name}!")
+  ```
+
+  调用时传入参数：
+  ```python
+  greet("Alice")  # 输出: Hello, Alice!
+  ```
+
+  ### 4. **带返回值的函数**
+
+  使用 `return` 语句返回函数执行的结果。
+
+  #### 示例：
+  ```python
+  def add(a, b):
+      return a + b
+  ```
+
+  调用函数并获取返回值：
+  ```python
+  result = add(3, 5)
+  print(result)  # 输出: 8
+  ```
+
+  ### 5. **默认参数**
+
+  在定义函数时，可以为参数提供默认值。如果调用函数时没有提供该参数，则使用默认值。
+
+  #### 示例：
+  ```python
+  def greet(name="Guest"):
+      print(f"Hello, {name}!")
+  ```
+
+  调用时可以使用默认值，也可以传入自己的参数：
+  ```python
+  greet()           # 输出: Hello, Guest!
+  greet("Alice")    # 输出: Hello, Alice!
+  ```
+
+  ### 6. **可变参数**
+
+  Python 支持函数接受任意数量的参数，可以通过在参数名前加 `*` 或 `**` 来实现：
+  - **`*args`**：用于接受任意数量的位置参数，返回一个元组。
+  - **`**kwargs`**：用于接受任意数量的关键字参数，返回一个字典。
+
+  #### 示例：
+  ```python
+  # *args 示例：接收不定数量的位置参数
+  def add(*args):
+      return sum(args)
+  
+  print(add(1, 2, 3))  # 输出: 6
+  print(add(5, 10))    # 输出: 15
+  
+  # **kwargs 示例：接收不定数量的关键字参数
+  def display_info(**kwargs):
+      for key, value in kwargs.items():
+          print(f"{key}: {value}")
+  
+  display_info(name="Alice", age=25)  # 输出: name: Alice, age: 25
+  ```
+
+  ### 7. **传递可变对象和不可变对象**
+
+  - 在函数调用时，如果传递的是**可变对象**（如列表、字典），在函数内部修改该对象时，会影响到原对象。
+  - 如果传递的是**不可变对象**（如字符串、整数），函数内的修改不会影响到外部的原对象。
+
+  #### 示例：
+  ```python
+  def modify_list(lst):
+      lst.append(4)
+  
+  my_list = [1, 2, 3]
+  modify_list(my_list)
+  print(my_list)  # 输出: [1, 2, 3, 4]，原列表被修改了
+  
+  def modify_string(s):
+      s = s + " world"
+  
+  my_string = "hello"
+  modify_string(my_string)
+  print(my_string)  # 输出: hello，原字符串没有变化
+  ```
+
+  ### 8. **嵌套函数**
+
+  在 Python 中，可以在函数内部定义另一个函数，称为嵌套函数。
+
+  #### 示例：
+  ```python
+  def outer():
+      def inner():
+          print("This is inner function.")
+      print("This is outer function.")
+      inner()
+  
+  outer()
+  ```
+
+  输出：
+  ```
+  This is outer function.
+  This is inner function.
+  ```
+
+  ### 9. **Lambda 表达式（匿名函数）**
+
+  Python 还支持使用 `lambda` 关键字创建匿名函数。Lambda 函数没有函数名，只能包含一个表达式。
+
+  #### 语法：
+  ```python
+  lambda 参数列表: 表达式
+  ```
+
+  #### 示例：
+  ```python
+  add = lambda a, b: a + b
+  print(add(3, 5))  # 输出: 8
+  ```
+
+  Lambda 通常用于简单的场景，如排序、过滤等：
+
+  ```python
+  nums = [1, 2, 3, 4, 5]
+  squared_nums = list(map(lambda x: x ** 2, nums))
+  print(squared_nums)  # 输出: [1, 4, 9, 16, 25]
+  ```
+
+  ### 10. **函数文档字符串（Docstring）**
+
+  文档字符串用于为函数提供说明，可以通过 `"""..."""` 来编写多行注释，帮助他人理解函数的功能。
+
+  #### 示例：
+  ```python
+  def greet(name):
+      """这个函数用于问候用户"""
+      print(f"Hello, {name}!")
+  ```
+
+  可以使用内置函数 `help()` 或 `.__doc__` 属性查看函数的文档字符串：
+  ```python
+  help(greet)
+  print(greet.__doc__)
+  ```
+
+  ### 总结：
+
+  - 使用 `def` 定义函数，函数可以有参数和返回值。
+  - 函数可以有默认参数、可变参数（`*args` 和 `**kwargs`），支持嵌套函数和 Lambda 函数。
+  - 函数文档字符串有助于提高代码的可读性和可维护性。
+
+  通过定义函数，可以将常用的代码封装起来，提高代码的复用性和模块化。
 
 - python中数据容器的操作
+
+  在 Python 中，**数据容器**是存储和管理数据的结构，常用的容器包括：**列表（List）**、**元组（Tuple）**、**集合（Set）**和**字典（Dictionary）**。这些容器各有特点，支持不同类型的数据存储与操作。下面对这些常见数据容器及相关操作进行总结。
+
+  ---
+
+  ### 1. **列表（List）**
+  列表是 Python 中最常用的可变序列类型，可以存储任意类型的数据，且允许元素重复。
+
+  #### 定义与操作：
+  ```python
+  # 定义一个列表
+  my_list = [1, 2, 3, "apple", True]
+  
+  # 访问元素
+  print(my_list[0])  # 输出: 1
+  print(my_list[-1])  # 输出: True
+  
+  # 修改元素
+  my_list[1] = "banana"
+  print(my_list)  # 输出: [1, 'banana', 3, 'apple', True]
+  
+  # 列表长度
+  print(len(my_list))  # 输出: 5
+  
+  # 添加元素
+  my_list.append("new")  # 在末尾添加
+  my_list.insert(1, "inserted")  # 在索引1处插入
+  print(my_list)
+  
+  # 删除元素
+  my_list.remove("apple")  # 移除指定元素
+  popped = my_list.pop()  # 弹出最后一个元素
+  print(popped)
+  
+  # 切片
+  print(my_list[1:3])  # 输出: ['inserted', 'banana']
+  
+  # 列表合并
+  another_list = [4, 5, 6]
+  combined = my_list + another_list  # 直接用 + 号
+  print(combined)
+  
+  # 列表排序
+  num_list = [3, 1, 2, 5]
+  num_list.sort()
+  print(num_list)  # 输出: [1, 2, 3, 5]
+  ```
+
+  ---
+
+  ### 2. **元组（Tuple）**
+  元组是不可变的序列类型，一旦定义，元素无法修改。与列表类似，但因为其不可变特性，通常用于保存不需要改变的数据。
+
+  #### 定义与操作：
+  ```python
+  # 定义一个元组
+  my_tuple = (1, 2, 3, "apple", True)
+  
+  # 访问元素
+  print(my_tuple[0])  # 输出: 1
+  
+  # 元组长度
+  print(len(my_tuple))  # 输出: 5
+  
+  # 元组不可变，不能修改元素
+  # my_tuple[1] = "banana"  # 这会引发错误
+  
+  # 元组的切片
+  print(my_tuple[1:3])  # 输出: (2, 3)
+  
+  # 元组可以通过索引获取单个元素
+  print(my_tuple[-1])  # 输出: True
+  ```
+
+  #### 元组的解包：
+  ```python
+  # 元组解包
+  a, b, c = (1, 2, 3)
+  print(a, b, c)  # 输出: 1 2 3
+  ```
+
+  #### 特殊情况：单元素元组
+  ```python
+  single_element_tuple = (1,)  # 注意逗号
+  print(type(single_element_tuple))  # 输出: <class 'tuple'>
+  ```
+
+  ---
+
+  ### 3. **集合（Set）**
+  集合是一个无序且元素唯一的容器，常用于去重和集合运算（如交集、并集等）。
+
+  #### 定义与操作：
+  ```python
+  # 定义集合
+  my_set = {1, 2, 3, "apple", True}
+  
+  # 集合中不允许重复元素
+  my_set = {1, 2, 2, 3, 3, 4}  # 重复的元素会自动去重
+  print(my_set)  # 输出: {1, 2, 3, 4}
+  
+  # 添加元素
+  my_set.add(5)
+  print(my_set)  # 输出: {1, 2, 3, 4, 5}
+  
+  # 删除元素
+  my_set.remove(3)
+  print(my_set)  # 输出: {1, 2, 4, 5}
+  
+  # 检查元素是否存在
+  print(2 in my_set)  # 输出: True
+  
+  # 集合的交集、并集、差集等操作
+  set_a = {1, 2, 3}
+  set_b = {3, 4, 5}
+  
+  # 并集
+  print(set_a | set_b)  # 输出: {1, 2, 3, 4, 5}
+  
+  # 交集
+  print(set_a & set_b)  # 输出: {3}
+  
+  # 差集
+  print(set_a - set_b)  # 输出: {1, 2}
+  ```
+
+  #### 冻结集合（frozenset）：
+  `frozenset` 是不可变的集合，定义后无法修改。
+  ```python
+  frozen_set = frozenset([1, 2, 3])
+  # frozen_set.add(4)  # 这会引发错误
+  ```
+
+  ---
+
+  ### 4. **字典（Dictionary）**
+  字典是一种键值对存储的数据结构，允许通过键访问值。字典中的键是唯一的，值可以是任何类型。
+
+  #### 定义与操作：
+  ```python
+  # 定义字典
+  my_dict = {"name": "Alice", "age": 25, "city": "New York"}
+  
+  # 访问值
+  print(my_dict["name"])  # 输出: Alice
+  
+  # 添加或修改键值对
+  my_dict["age"] = 26  # 修改
+  my_dict["job"] = "Developer"  # 添加新键值对
+  print(my_dict)
+  
+  # 删除键值对
+  del my_dict["city"]
+  print(my_dict)
+  
+  # 字典长度
+  print(len(my_dict))  # 输出: 3
+  
+  # 检查键是否存在
+  print("name" in my_dict)  # 输出: True
+  
+  # 遍历字典
+  for key, value in my_dict.items():
+      print(f"{key}: {value}")
+  ```
+
+  #### 字典方法：
+  ```python
+  # 获取键对应的值，若键不存在则返回默认值
+  print(my_dict.get("city", "Not Found"))  # 输出: Not Found
+  
+  # 获取字典中所有键
+  print(my_dict.keys())  # 输出: dict_keys(['name', 'age', 'job'])
+  
+  # 获取字典中所有值
+  print(my_dict.values())  # 输出: dict_values(['Alice', 26, 'Developer'])
+  
+  # 获取所有键值对
+  print(my_dict.items())  # 输出: dict_items([('name', 'Alice'), ('age', 26), ('job', 'Developer')])
+  ```
+
+  ---
+
+  ### 5. **容器类型的常见操作**
+
+  #### 通用操作：
+  无论是列表、元组、集合还是字典，都可以进行一些通用的操作：
+
+  - **遍历**：通过 `for` 循环遍历元素或键值对。
+  - **`in` 运算符**：检查某个元素或键是否存在于容器中。
+  - **长度**：使用 `len()` 函数获取容器的长度。
+  - **删除**：通过 `del` 或特定方法（如 `remove()`、`pop()`）删除元素。
+
+  #### 容器类型的转换：
+  可以通过类型转换函数将一种容器转换为另一种容器类型：
+  ```python
+  # 列表转集合
+  my_list = [1, 2, 2, 3]
+  my_set = set(my_list)
+  print(my_set)  # 输出: {1, 2, 3}
+  
+  # 集合转列表
+  new_list = list(my_set)
+  print(new_list)  # 输出: [1, 2, 3]
+  
+  # 列表转元组
+  my_tuple = tuple(my_list)
+  print(my_tuple)  # 输出: (1, 2, 2, 3)
+  ```
+
+  ---
+
+  ### 总结：
+
+  | 特点     | 列表                         | 元组                           | 字符串             | 集合                   | 字典                                     |
+  | -------- | ---------------------------- | ------------------------------ | ------------------ | ---------------------- | ---------------------------------------- |
+  | 元素数量 | 支持多个                     | 支持多个                       | 支持多个           | 支持多个               | 支持多个                                 |
+  | 元素类型 | 任意                         | 任意                           | **仅字符**         | 任意                   | 键：除字典外任意类型<br/>值：任意类型    |
+  | 下标索引 | 支持                         | 支持                           | 支持               | **不支持**             | **不支持**                               |
+  | 重复元素 | 支持                         | 支持                           | 支持               | **不支持**             | 键不允许重复，值可以重复                 |
+  | 可修改性 | 支持                         | **不支持**                     | **不支持**         | 支持                   | 支持                                     |
+  | 数据有序 | 是                           | 是                             | 是                 | **否**                 | **否**（Python 3.7+ 插入顺序保留）       |
+  | 使用场景 | 可修改，记录可重复数据的场景 | 不可修改，记录可重复数据的场景 | 一串字符的记录场景 | 不可重复数据的记录场景 | 通过键快速检索值，适合映射关系的存储场景 |

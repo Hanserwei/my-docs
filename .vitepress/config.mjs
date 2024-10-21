@@ -10,10 +10,10 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/image/logo.svg',
-    outlineTitle: "文章目录",
+    outlineTitle: "文章目录📚",
     outline: [2,4],
     nav: [
-      { text: '家', link: '/' },
+      { text: '家🏠', link: '/' },
     ],
 
     footer:{
@@ -22,13 +22,13 @@ export default defineConfig({
     
     sidebar: [
       {
-        text: '千里之行',
+        text: '千里之行🕖',
         items: [
           { text: '', link: '/guide/index' }
         ]
       },
       {
-        text: 'Python学习',
+        text: 'Python学习🐍',
         items: [
           { text: '基础语法', link: '/guide/Python/基础语法部分/Python基础学习' },
           { text: '进阶语法', link: '/guide/Python/进阶语法部分/Python进阶学习' },
@@ -36,13 +36,13 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Java学习',
+        text: 'Java学习🧱',
         items: [
           { text: '', link: '/guide/index' }
         ]
       },
       {
-        text: 'PVE学习',
+        text: 'PVE学习🛜',
         items: [
           { text: 'PVE简介', link: '/guide/PVE/PVE简介' },
           { text: 'PVE安装教程', link: '/guide/PVE/PVE安装教程' },
@@ -50,7 +50,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '科学上网篇',
+        text: '科学上网篇🪜',
         items: [
           {text:'科学上网教程',link:'/guide/科学上网/科学上网'}
         ]
