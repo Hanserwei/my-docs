@@ -7,6 +7,11 @@ export default defineConfig({
   markdown: {lineNumbers: true},
   title: "Hanser的笔记网站",
   description: "一个基于vitepress的站点",
+  plugins: {
+    mdEnhance: {
+      markmap: true,
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/image/logo.svg',
