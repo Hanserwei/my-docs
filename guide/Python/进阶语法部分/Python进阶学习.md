@@ -947,3 +947,130 @@ mypy script.py
 - **类型注解** 提高代码的可读性和可维护性，帮助 IDE 提供更好的代码补全和错误提示。
 - 类型注解不会改变 Python 动态类型语言的本质，但可以通过工具（如 `mypy`）进行静态类型检查，提升代码的健壮性。
 - 常见的类型注解包括：`int`、`str`、`List`、`Dict`、`Optional`、`Union` 等。
+
+
+
+## 实际综合案例（面向对象）
+
+## 面向对象的编程思想
+
+思路，就是分步骤构造不同的类，使用不同的类对象。加强类对象的理解记忆
+
+- 数据的定义类
+
+```python
+"""
+数据定义类
+"""
+
+class DataRecorder:
+    def __init__(self,date,order_id,money,province):
+        self.date = date
+        self.order_id = order_id
+        self.money = money
+        self.province = province
+
+    def __str__(self):
+        return f'{self.date},{self.order_id},{self.money},{self.province}'
+```
+
+- 文件定义类
+
+```python
+"""
+和文件相关的类定义
+"""
+import json
+
+from 课程代码.数据分析案例.data_define import DataRecorder
+
+
+class FileReader:
+    def read_data(self)-> list[DataRecorder]:
+        """读取文件，度到的每一条数据都转换成Record对象，将他们都封装到list内返回回去"""
+        pass
+
+class DateCsvReader(FileReader):
+    def __init__(self,path):
+        self.path = path # 定义成员变量记录基础路径
+
+    def read_data(self)-> list[DataRecorder]:
+        f = open(self.path,'r',encoding='utf-8')
+        record_list = []
+        for line in f.readlines():
+            line = line.replace('\n','')
+            data_list = line.split(',')
+            record = DataRecorder(data_list[0],data_list[1],int(data_list[2]),data_list[3])
+            record_list.append(record)
+
+        f.close()
+        return record_list
+
+class JsonReader(FileReader):
+    def __init__(self,path):
+        self.path = path
+
+    def read_data(self) -> list[DataRecorder]:
+        f = open(self.path,'r',encoding='utf-8')
+        record_list = []
+        for line in f.readlines():
+            data_dict = json.loads(line)
+            record = DataRecorder(data_dict['date'],data_dict['order_id'],data_dict['money'],data_dict['province'])
+            record_list.append(record)
+
+        f.close()
+        return record_list
+
+if __name__ == '__main__':
+    CsvReader = DateCsvReader('./2011年1月销售数据.txt')
+    JsonReader = JsonReader('./2011年2月销售数据JSON.txt')
+    lis1 = CsvReader.read_data()
+    lis2 = JsonReader.read_data()
+    for i in lis1:
+        print(i)
+
+    for i in lis2:
+        print(i)
+```
+
+- 主文件main
+
+```python
+from pyecharts.charts import Bar
+from pyecharts.globals import ThemeType
+from pyecharts.options import TitleOpts, LabelOpts, InitOpts
+
+from file_define import FileReader,DateCsvReader,JsonReader
+from data_define import DataRecorder
+
+csv_file_reader = DateCsvReader('./2011年1月销售数据.txt')
+json_file_reader = JsonReader('./2011年2月销售数据JSON.txt')
+
+jan_data: list[DataRecorder] = csv_file_reader.read_data()
+feb_data: list[DataRecorder] = json_file_reader.read_data()
+
+all_data: list[DataRecorder] = jan_data + feb_data
+
+# 开始计算
+data_dict = {}
+for record in all_data:
+    if record.date in data_dict.keys():
+        data_dict[record.date] += record.money
+    else:
+        data_dict[record.date] = record.money
+
+# print(data_dict)
+
+bar = Bar(init_opts=InitOpts(theme=ThemeType.LIGHT))
+bar.add_xaxis(sorted(data_dict.keys()))
+# print(sorted(data_dict.keys()))
+bar.add_yaxis("销售额",list(data_dict.values()),label_opts=LabelOpts(is_show=False))
+bar.set_global_opts(
+    title_opts=TitleOpts(title='每日销售额'),
+
+)
+
+bar.render()
+# 就不把生成的html文件上传了，多复习，第一次接受类对象这种概念好抽象呀
+```
+
