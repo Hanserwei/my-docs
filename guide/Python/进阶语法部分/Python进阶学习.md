@@ -987,10 +987,10 @@ from 课程代码.数据分析案例.data_define import DataRecorder
 
 class FileReader:
     def read_data(self)-> list[DataRecorder]:
-        """读取文件，度到的每一条数据都转换成Record对象，将他们都封装到list内返回回去"""
+        """读取文件，度到的每一条数据都转换成DataRecorder类对象，将他们都封装到list内返回回去"""
         pass
 
-class DateCsvReader(FileReader):
+class DataCsvReader(FileReader):
     def __init__(self,path):
         self.path = path # 定义成员变量记录基础路径
 
@@ -1006,7 +1006,7 @@ class DateCsvReader(FileReader):
         f.close()
         return record_list
 
-class JsonReader(FileReader):
+class DataJsonReader(FileReader):
     def __init__(self,path):
         self.path = path
 
@@ -1022,8 +1022,8 @@ class JsonReader(FileReader):
         return record_list
 
 if __name__ == '__main__':
-    CsvReader = DateCsvReader('./2011年1月销售数据.txt')
-    JsonReader = JsonReader('./2011年2月销售数据JSON.txt')
+    CsvReader = DataCsvReader('./2011年1月销售数据.txt')
+    JsonReader = DataJsonReader('./2011年2月销售数据JSON.txt')
     lis1 = CsvReader.read_data()
     lis2 = JsonReader.read_data()
     for i in lis1:
@@ -1040,11 +1040,11 @@ from pyecharts.charts import Bar
 from pyecharts.globals import ThemeType
 from pyecharts.options import TitleOpts, LabelOpts, InitOpts
 
-from file_define import FileReader,DateCsvReader,JsonReader
+from file_define import FileReader,DataCsvReader,DataJsonReader
 from data_define import DataRecorder
 
-csv_file_reader = DateCsvReader('./2011年1月销售数据.txt')
-json_file_reader = JsonReader('./2011年2月销售数据JSON.txt')
+csv_file_reader = DataCsvReader('./2011年1月销售数据.txt')
+json_file_reader = DataJsonReader('./2011年2月销售数据JSON.txt')
 
 jan_data: list[DataRecorder] = csv_file_reader.read_data()
 feb_data: list[DataRecorder] = json_file_reader.read_data()
