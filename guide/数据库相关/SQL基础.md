@@ -100,9 +100,9 @@
   ```sql
   TRUNCATE TABLE employees;
   ```
-
-**注意**：`TRUNCATE`比`DELETE`更快，因为它不生成单独的行删除日志，并且无法使用`WHERE`子句。
-
+::: danger 注意！
+`TRUNCATE`比`DELETE`更快，因为它不生成单独的行删除日志，并且无法使用`WHERE`子句。
+:::
 ## DML（数据操控语言）基础语句
 
 ### 1. SELECT
@@ -123,6 +123,9 @@
   - `DISTINCT`：去除重复记录。
   - `ORDER BY`：对结果进行排序。
   - `GROUP BY`：分组统计数据。
+::: danger 注意！
+GROUP BY中出现了哪个列，哪个列才可以出现在SELECT中的非聚合中。
+:::
 
 ### 2. INSERT
 
@@ -157,7 +160,9 @@
   UPDATE users SET email = 'alice@newdomain.com' WHERE name = 'Alice';
   ```
 
-- **注意**：未使用`WHERE`子句时，将更新表中所有记录。
+::: danger 注意！
+未使用`WHERE`子句时，将更新表中所有记录。
+:::
 
 ### 4. DELETE
 
@@ -173,8 +178,171 @@
   DELETE FROM users WHERE name = 'Alice';
   ```
 
-- **注意**：未使用`WHERE`子句时，将删除表中所有记录。
+::: danger 注意！
+未使用`WHERE`子句时，将删除表中所有记录。
+:::
 
-## SQL的DQL基础查询
 ## SQL的DQL分组聚会
+
+分组聚合是在SQL中对数据进行分组，并对每个组应用聚合函数的操作。这通常用于生成汇总信息，例如求和、计数或平均值。
+
+### 常用聚合函数
+
+1. **COUNT()**：计算行数。
+   ```sql
+   SELECT COUNT(*) FROM orders;
+   ```
+
+2. **SUM()**：计算总和。
+   ```sql
+   SELECT SUM(amount) FROM orders;
+   ```
+
+3. **AVG()**：计算平均值。
+   ```sql
+   SELECT AVG(amount) FROM orders;
+   ```
+
+4. **MAX()**：获取最大值。
+   ```sql
+   SELECT MAX(amount) FROM orders;
+   ```
+
+5. **MIN()**：获取最小值。
+   ```sql
+   SELECT MIN(amount) FROM orders;
+   ```
+
+### GROUP BY 子句
+
+使用 `GROUP BY` 子句将结果集按一个或多个列进行分组。
+
+- **基本语法**：
+  ```sql
+  SELECT column1, AGGREGATE_FUNCTION(column2)
+  FROM table_name
+  GROUP BY column1;
+  ```
+
+- **示例**：
+  ```sql
+  SELECT customer_id, COUNT(*) AS order_count
+  FROM orders
+  GROUP BY customer_id;
+  ```
+
+### HAVING 子句
+
+`HAVING` 子句用于对聚合结果进行过滤，通常与 `GROUP BY` 一起使用。
+
+- **示例**：
+  ```sql
+  SELECT customer_id, SUM(amount) AS total_spent
+  FROM orders
+  GROUP BY customer_id
+  HAVING SUM(amount) > 1000;
+  ```
+
+### 组合示例
+
+```sql
+SELECT product_id, COUNT(*) AS sales_count, AVG(price) AS avg_price
+FROM sales
+GROUP BY product_id
+HAVING COUNT(*) > 5;
+```
+
 ## SQL的DQL排序分页
+在SQL中，排序和分页操作常用于控制查询结果的显示顺序和数量，尤其在处理大量数据时尤为重要。
+
+### 排序
+
+使用 `ORDER BY` 子句对查询结果进行排序。
+:::tip
+默认升序排列
+:::
+
+- **基本语法**：
+  ```sql
+  SELECT column1, column2
+  FROM table_name
+  ORDER BY column1 [ASC|DESC];
+  ```
+
+- **示例**：
+  ```sql
+  SELECT name, age
+  FROM users
+  ORDER BY age ASC;  -- 按年龄升序排序
+  ```
+
+### 分页
+
+分页操作可以通过 `LIMIT` 和 `OFFSET` 子句（在某些数据库中是 `FETCH` 和 `OFFSET`）来实现，控制返回的记录数。
+
+- **基本语法**（MySQL/PostgreSQL）：
+  ```sql
+  SELECT column1, column2
+  FROM table_name
+  ORDER BY column1
+  LIMIT page_size OFFSET offset_value;
+  ```
+
+- **示例**（获取第2页，每页10条记录）：
+  ```sql
+  SELECT *
+  FROM users
+  ORDER BY id
+  LIMIT 10 OFFSET 10;  -- 获取第2页的记录
+  ```
+:::details LIMIT注意事项
+### LIMIT 的介绍
+
+`LIMIT` 子句用于限制查询结果中返回的行数，常用于实现分页效果。它在不同的数据库管理系统中的语法略有差异，但基本功能相同。
+
+### 基本语法
+
+在大多数数据库（如 MySQL 和 PostgreSQL）中，语法为：
+```sql
+SELECT column1, column2
+FROM table_name
+LIMIT number;
+```
+
+- **number**：要返回的最大行数。
+
+### 示例
+
+1. **限制返回行数**：
+   ```sql
+   SELECT name FROM users LIMIT 5;  -- 返回前5条记录
+   ```
+
+2. **结合 OFFSET 实现分页**：
+   ```sql
+   SELECT name FROM users LIMIT 10 OFFSET 20;  -- 获取第3页（每页10条记录）
+   ```
+:::danger 注意事项
+
+- **在 SQL Server 中**，使用 `TOP` 关键字替代 `LIMIT`：
+  ```sql
+  SELECT TOP 5 name FROM users;
+  ```
+
+- **在 Oracle 中**，使用 `ROWNUM` 或 `FETCH FIRST`：
+  ```sql
+  SELECT name FROM users WHERE ROWNUM <= 5;
+  ```
+:::
+使用 `LIMIT` 可以有效控制查询结果的数量，特别是在处理大量数据时。
+:::
+
+### 组合示例
+
+结合排序和分页可以同时控制结果的顺序和数量：
+```sql
+SELECT name, email
+FROM users
+ORDER BY name DESC
+LIMIT 5 OFFSET 0;  -- 获取前5条记录
+```
