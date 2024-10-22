@@ -47,6 +47,12 @@ export default defineConfig({
         ]
       },
       {
+        text: '数据库🚀',
+        items: [
+          {text:'SQL基础',link:'/guide/数据库相关/SQL基础.md'}
+        ]
+      },
+      {
         text: 'PVE学习🛜',
         items: [
           { text: 'PVE简介', link: '/guide/PVE/PVE简介' },
