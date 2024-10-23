@@ -17,11 +17,12 @@
 - [我的小学霸月月](https://zh.wikipedia.org/wiki/%E5%A5%B3%E6%9C%8B%E5%8F%8B)
 
 ## Mermaid示例
+mermaid是一个类似于markdown格式的文本语言主要用于生成各类线图，具体的使用方法可以参考[Mermaid](https://mermaid.nodejs.cn/ecosystem/tutorials.html)的中文网，我也不会，我也是在2024/10/23的21:34:23在互联网上发现的这个玩意。学就完事了。
 ```mermaid
 mindmap
-  root((mindmap))
-    Origins
-      Long history
+  root((起点))
+    起源
+      悠久的历史
       ::icon(fa fa-book)
       Popularisation
         British popular psychology author Tony Buzan
