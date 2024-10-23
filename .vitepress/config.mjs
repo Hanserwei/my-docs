@@ -14,6 +14,9 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search:{
+      provider:'local'
+    },
     logo: '/image/logo.svg',
     outlineTitle: "文章目录📚",
     outline: [2,4],
