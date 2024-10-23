@@ -15,7 +15,12 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search:{
-      provider:'local'
+      provider:'algolia',
+      options:{
+        appId: 'DN7ZDFZX2K',
+        apiKey: '4667ad9c068fa580730d6fb4a1e345a5',
+        indexName: 'hanserweiio'
+      }
     },
     logo: '/image/logo.svg',
     outlineTitle: "文章目录📚",
