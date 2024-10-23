@@ -1074,4 +1074,113 @@ bar.set_global_opts(
 bar.render()
 # 就不把生成的html文件上传了，多复习，第一次接受类对象这种概念好抽象呀
 ```
+## 闭包以及装饰器
+闭包是指一个函数可以捕获并记住其定义时的上下文环境，允许内部函数访问外部函数的变量。装饰器是用来增强或修改函数行为的一种设计模式，实际上是闭包的一种应用。
 
+### 闭包示例
+
+```python
+def outer_function(x):
+    def inner_function(y):
+        return x + y
+    return inner_function
+
+closure = outer_function(10)
+print(closure(5))  # 输出 15
+```
+
+### 装饰器示例
+
+```python
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+```
+输出结果
+
+```python
+Something is happening before the function is called.
+Hello!
+Something is happening after the function is called.
+```
+### 应用场景
+
+- **闭包**：用于数据封装、创建工厂函数。
+- **装饰器**：用于日志记录、权限检查、缓存结果等场景。
+
+## 高级编程模式
+单例模式和工厂模式是两种常用的设计模式，各有其特点和应用场景。
+
+### 单例模式
+
+确保一个类只有一个实例，并提供全局访问点。
+
+#### 示例
+
+```python
+class Singleton:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
+
+singleton1 = Singleton()
+singleton2 = Singleton()
+
+print(singleton1 is singleton2)  # 输出 True
+```
+
+**输出结果**：
+```
+True
+```
+
+### 工厂模式
+
+定义一个接口用于创建对象，但让子类决定实例化哪一个类。工厂方法延迟了对象的实例化。
+
+#### 示例
+
+```python
+class ProductA:
+    def operation(self):
+        return "Result of Product A"
+
+class ProductB:
+    def operation(self):
+        return "Result of Product B"
+
+class Factory:
+    @staticmethod
+    def create_product(product_type):
+        if product_type == "A":
+            return ProductA()
+        elif product_type == "B":
+            return ProductB()
+        raise ValueError("Unknown product type")
+
+product_a = Factory.create_product("A")
+product_b = Factory.create_product("B")
+
+print(product_a.operation())  # 输出 Result of Product A
+print(product_b.operation())  # 输出 Result of Product B
+```
+
+**输出结果**：
+```
+Result of Product A
+Result of Product B
+```
+
+这两种模式在代码中提供了不同的结构和灵活性，适用于不同的设计需求。
