@@ -9,3 +9,49 @@
 
 ## 致谢
 
+- [VitePress](https://vitepress.dev/)
+- [ArchLinux](https://archlinux.org/)
+- [JetBrains](https://www.jetbrains.com/)
+- [西南交通大学](https://www.swjtu.edu.cn/)
+- [黑马程序员](https://www.itheima.com/)
+- [我的小学霸月月](https://zh.wikipedia.org/wiki/%E5%A5%B3%E6%9C%8B%E5%8F%8B)
+
+## Mermaid示例
+```mermaid
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+```
+```mmd
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+```

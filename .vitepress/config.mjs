@@ -1,10 +1,16 @@
 import { defineConfig } from 'vitepress'
-import { set_sidebar } from './utils/auto_sidebar.mjs'
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid({
+  mermaid: {
+    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
+  },
+ mermaidPlugin: {
+    class: "mermaid my-class", // set additional css classes for parent container
+  },
   base: "/my-docs/",
-  head: [['link',{rel:'icon',herf:'/image/head256X256.ico'}]],
+  head: [["link", { rel: "icon", href: "/my-docs/logo.svg" }]],
   markdown: {lineNumbers: true},
   title: "Hanser的笔记网站",
   description: "一个基于vitepress的站点",
@@ -78,7 +84,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Hanserwei' }
+      { icon: 'github', link: 'https://github.com/Hanserwei/my-docs' }
     ]
   }
 })
