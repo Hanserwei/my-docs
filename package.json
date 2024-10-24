@@ -11,5 +11,12 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@braintree/sanitize-url": "^7.1.0",
+    "cytoscape": "^3.30.3",
+    "cytoscape-cose-bilkent": "^4.1.0",
+    "dayjs": "^1.11.13",
+    "debug": "^4.3.7"
   }
 }
