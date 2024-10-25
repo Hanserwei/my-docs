@@ -78,7 +78,8 @@ export default withMermaid({
       {
         text: '科学上网篇🪜',
         items: [
-          {text:'科学上网教程',link:'/guide/科学上网/科学上网'}
+          {text:'科学上网教程',link:'/guide/科学上网/科学上网'},
+          {text:'clashverge使用教程',link:'/guide/科学上网/clashverge使用教程'}
         ]
       },
       {
