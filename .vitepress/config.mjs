@@ -53,6 +53,7 @@ export default withMermaid({
           { text: '基础语法', link: '/guide/Python/基础语法部分/Python基础学习' },
           { text: '进阶语法', link: '/guide/Python/进阶语法部分/Python进阶学习' },
           { text: '第三方包', link: '/guide/Python/第三方包/index' },
+          { text: 'PyQT6', link: '/guide/Python/第三方包/pyqt6/PyQT6入门到跑路' },
         ]
       },
       {
