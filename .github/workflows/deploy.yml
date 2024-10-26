@@ -57,3 +57,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+  # repo-sync:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Mirror with force push (git push -f)
+  #       uses: Yikun/hub-mirror-action@master
+  #       with:
+  #         src: github/Hanserwei
+  #         dst: gitee/hanser_wei_admin
+  #         dst_key: '${{ secrets.GITEE_PRIVATE_KEY }}'
+  #         dst_token: '${{ secrets.GITEE_TOKEN }}'
+  #         #static_list: pythonProject
+  #         force_update: true
+  #         debug: true
