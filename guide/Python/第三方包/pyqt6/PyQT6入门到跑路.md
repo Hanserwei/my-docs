@@ -1782,7 +1782,8 @@ self.tree_view.setSortingEnabled(True)
 `QTreeView` 可以与 `QFileSystemModel` 结合使用，以展示文件系统的目录结构。以下是一个简单的文件系统浏览器示例：
 
 ```python
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTreeView, QFileSystemModel, QVBoxLayout, QWidget
+from PyQt6.QtGui import QFileSystemModel
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTreeView, QVBoxLayout, QWidget
 import sys
 
 class MainWindow(QMainWindow):
