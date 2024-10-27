@@ -195,27 +195,226 @@ PySide / PyQt是C++的程序开发框架QT的Python实现。
 
 ### QPushButton按钮控件
 
+`QPushButton` 是一个用于创建可点击按钮的控件。它常用于用户界面中，以触发操作或事件。
+
+### 常用方法
+
+| 方法                          | 描述                           |
+| ----------------------------- | ------------------------------ |
+| `setText(text: str)`          | 设置按钮显示的文本。           |
+| `text() -> str`               | 获取当前按钮显示的文本。       |
+| `setIcon(icon: QIcon)`        | 设置按钮的图标。               |
+| `icon() -> QIcon`             | 获取当前按钮的图标。           |
+| `setCheckable(bool)`          | 设置按钮是否可选中。           |
+| `isCheckable() -> bool`       | 获取按钮是否可选中。           |
+| `setChecked(bool)`            | 设置按钮的选中状态。           |
+| `isChecked() -> bool`         | 获取当前按钮的选中状态。       |
+| `setEnabled(bool)`            | 设置按钮是否可用。             |
+| `isEnabled() -> bool`         | 获取按钮是否可用。             |
+| `setStyleSheet(style: str)`   | 设置按钮的样式表。             |
+| `clicked(callback: Callable)` | 连接点击信号到指定的回调函数。 |
+
+
+
 ### QToolButton工具按钮控件
+
+`QToolButton` 是一个用于创建工具按钮的控件，通常用于提供快速访问的工具或功能。它可以显示图标、文本或两者，并支持多种样式和行为。
+
+### 常用方法
+
+| 方法                                                  | 描述                         |
+| ----------------------------------------------------- | ---------------------------- |
+| `setIcon(icon: QIcon)`                                | 设置工具按钮的图标。         |
+| `icon() -> QIcon`                                     | 获取当前工具按钮的图标。     |
+| `setText(text: str)`                                  | 设置工具按钮显示的文本。     |
+| `text() -> str`                                       | 获取当前工具按钮显示的文本。 |
+| `setToolTip(tooltip: str)`                            | 设置工具按钮的提示文本。     |
+| `toolTip() -> str`                                    | 获取当前工具按钮的提示文本。 |
+| `setPopupMode(mode: QToolButton.ToolButtonPopupMode)` | 设置弹出模式。               |
+| `popupMode() -> QToolButton.ToolButtonPopupMode`      | 获取当前的弹出模式。         |
+| `setCheckable(bool)`                                  | 设置按钮是否可选中。         |
+| `isCheckable() -> bool`                               | 获取按钮是否可选中。         |
+| `setChecked(bool)`                                    | 设置按钮的选中状态。         |
+| `isChecked() -> bool`                                 | 获取当前按钮的选中状态。     |
+| `setEnabled(bool)`                                    | 设置按钮是否可用。           |
+| `isEnabled() -> bool`                                 | 获取按钮是否可用。           |
+| `setStyleSheet(style: str)`                           | 设置工具按钮的样式表。       |
+
+
 
 ### QCommandLinkButton命令链接按钮控件
 
+`QCommandLinkButton` 是一个用于创建命令链接按钮的控件，通常用于提供简洁的操作选项。它通常显示较大文本或图标，适合在需要明确用户选择的情况下使用。
+
+### 常用方法
+
+| 方法                               | 描述                       |
+| ---------------------------------- | -------------------------- |
+| `setText(text: str)`               | 设置按钮显示的主文本。     |
+| `text() -> str`                    | 获取当前按钮显示的主文本。 |
+| `setDescription(description: str)` | 设置按钮的描述文本。       |
+| `description() -> str`             | 获取当前按钮的描述文本。   |
+| `setIcon(icon: QIcon)`             | 设置按钮的图标。           |
+| `icon() -> QIcon`                  | 获取当前按钮的图标。       |
+| `setEnabled(bool)`                 | 设置按钮是否可用。         |
+| `isEnabled() -> bool`              | 获取按钮是否可用。         |
+| `setStyleSheet(style: str)`        | 设置命令链接按钮的样式表。 |
+
+
+
 ### QRadioButton单选按钮控件
+
+`QRadioButton` 是一个用于创建单选按钮的控件，允许用户在一组选项中选择一个。通常与其他单选按钮组合使用，以形成互斥的选择。
+
+### 常用方法
+
+| 方法                        | 描述                                                       |
+| --------------------------- | ---------------------------------------------------------- |
+| `setText(text: str)`        | 设置单选按钮显示的文本。                                   |
+| `text() -> str`             | 获取当前单选按钮显示的文本。                               |
+| `setChecked(bool)`          | 设置单选按钮的选中状态。                                   |
+| `isChecked() -> bool`       | 获取当前单选按钮的选中状态。                               |
+| `setEnabled(bool)`          | 设置单选按钮是否可用。                                     |
+| `isEnabled() -> bool`       | 获取单选按钮是否可用。                                     |
+| `setAutoExclusive(bool)`    | 设置是否为自动互斥，默认情况下同一组中的单选按钮是互斥的。 |
+| `isAutoExclusive() -> bool` | 获取是否为自动互斥状态。                                   |
+| `setStyleSheet(style: str)` | 设置单选按钮的样式表。                                     |
+
+
 
 ### QCheckBox复选框按钮控件
 
+`QCheckBox` 是一个用于创建复选框的控件，允许用户选择或取消选择某个选项。它可以用于单独的选项或与其他复选框组合使用，适合多重选择的场景。
+
+### 常用方法
+
+| 方法                        | 描述                                                 |
+| --------------------------- | ---------------------------------------------------- |
+| `setText(text: str)`        | 设置复选框显示的文本。                               |
+| `text() -> str`             | 获取当前复选框显示的文本。                           |
+| `setChecked(bool)`          | 设置复选框的选中状态。                               |
+| `isChecked() -> bool`       | 获取当前复选框的选中状态。                           |
+| `setTristate(bool)`         | 设置复选框是否为三态模式（选中、未选中、部分选中）。 |
+| `isTristate() -> bool`      | 获取复选框是否为三态模式。                           |
+| `setEnabled(bool)`          | 设置复选框是否可用。                                 |
+| `isEnabled() -> bool`       | 获取复选框是否可用。                                 |
+| `setStyleSheet(style: str)` | 设置复选框的样式表。                                 |
+
+
+
 ### QDialogButtonBox组合按钮控件
+
+`QDialogButtonBox` 是一个用于管理对话框中按钮的控件，通常用于显示一组标准按钮（如“确定”、“取消”、“应用”等）。它可以自动管理按钮的排列和行为。
+
+### 常用方法
+
+| 方法                                                         | 描述                                     |
+| ------------------------------------------------------------ | ---------------------------------------- |
+| `addButton(button: QAbstractButton, role: QDialogButtonBox.ButtonRole)` | 添加自定义按钮。                         |
+| `button(role: QDialogButtonBox.ButtonRole) -> QAbstractButton` | 获取指定角色的按钮。                     |
+| `setStandardButtons(buttons: QDialogButtonBox.StandardButton)` | 设置标准按钮（如确定、取消）。           |
+| `standardButtons() -> QDialogButtonBox.StandardButton`       | 获取当前的标准按钮。                     |
+| `setCenterButtons(bool)`                                     | 设置是否将按钮居中排列。                 |
+| `isCenterButtons() -> bool`                                  | 获取按钮是否居中排列。                   |
+| `accepted()`                                                 | 接受信号（当用户点击“确定”按钮时触发）。 |
+| `rejected()`                                                 | 拒绝信号（当用户点击“取消”按钮时触发）。 |
+
+
 
 ## 选择列表类控件
 
 ### QComboBox下拉组合框控件
 
+`QComboBox` 是一个用于创建下拉组合框的控件，允许用户从预定义的选项中选择一个或输入自定义值。它在用户界面中常用于提供可选择的列表。
+
+### 常用方法
+
+| 方法                                                      | 描述                             |
+| --------------------------------------------------------- | -------------------------------- |
+| `addItem(text: str, userData: Any = None)`                | 添加一个项目到组合框。           |
+| `addItems(items: List[str])`                              | 添加多个项目到组合框。           |
+| `insertItem(index: int, text: str, userData: Any = None)` | 在指定索引插入一个项目。         |
+| `removeItem(index: int)`                                  | 移除指定索引的项目。             |
+| `clear()`                                                 | 清空组合框中的所有项目。         |
+| `setCurrentIndex(index: int)`                             | 设置当前选中的项目索引。         |
+| `currentIndex() -> int`                                   | 获取当前选中的项目索引。         |
+| `currentText() -> str`                                    | 获取当前选中的项目文本。         |
+| `setEditable(bool)`                                       | 设置组合框是否可编辑。           |
+| `isEditable() -> bool`                                    | 获取组合框是否可编辑状态。       |
+| `setMaxVisibleItems(count: int)`                          | 设置下拉列表中可见的最大项目数。 |
+| `setPlaceholderText(text: str)`                           | 设置占位符文本。                 |
+| `activated(callback: Callable)`                           | 连接激活信号到指定的回调函数。   |
+
+
+
 ### QFontComboBox字体组合框控件
 
+`QFontComboBox` 是一个用于选择字体的下拉组合框控件，允许用户从可用字体中选择一种。它自动显示系统中安装的字体，适用于字体选择器的场景。
+
+### 常用方法
+
+| 方法                                                | 描述                           |
+| --------------------------------------------------- | ------------------------------ |
+| `currentFont() -> QFont`                            | 获取当前选择的字体。           |
+| `setCurrentFont(font: QFont)`                       | 设置当前选择的字体。           |
+| `setEditable(bool)`                                 | 设置组合框是否可编辑。         |
+| `isEditable() -> bool`                              | 获取组合框是否可编辑状态。     |
+| `setFontFilters(filters: QFontDatabase.FontFilter)` | 设置字体过滤器。               |
+| `addItems(items: List[str])`                        | 添加多个项目到组合框。         |
+| `clear()`                                           | 清空组合框中的所有项目。       |
+| `activated(callback: Callable)`                     | 连接激活信号到指定的回调函数。 |
+
+
+
 ### QListWidget列表控件
+
+`QListWidget` 是一个用于显示和管理可选择项的列表控件。它支持单选和多选，可以显示文本、图像等，适合用于文件选择、列表浏览等场景。
+
+### 常用方法
+
+| 方法                                                      | 描述                         |
+| --------------------------------------------------------- | ---------------------------- |
+| `addItem(item: QListWidgetItem)`                          | 向列表中添加一个项目。       |
+| `addItems(items: List[str])`                              | 向列表中添加多个项目。       |
+| `insertItem(row: int, item: QListWidgetItem)`             | 在指定行插入一个项目。       |
+| `removeItem(row: int)`                                    | 移除指定行的项目。           |
+| `takeItem(row: int) -> QListWidgetItem`                   | 移除并返回指定行的项目。     |
+| `clear()`                                                 | 清空列表中的所有项目。       |
+| `count() -> int`                                          | 获取当前列表中的项目数量。   |
+| `currentItem() -> QListWidgetItem`                        | 获取当前选中的项目。         |
+| `setCurrentItem(item: QListWidgetItem)`                   | 设置当前选中的项目。         |
+| `setSelectionMode(mode: QAbstractItemView.SelectionMode)` | 设置选择模式。               |
+| `selectionMode() -> QAbstractItemView.SelectionMode`      | 获取当前的选择模式。         |
+| `selectedItems() -> List[QListWidgetItem]`                | 获取当前选中的所有项目。     |
+| `item(row: int) -> QListWidgetItem`                       | 获取指定行的项目。           |
+| `setDragEnabled(bool)`                                    | 设置是否启用拖放功能。       |
+| `setDropIndicatorShown(bool)`                             | 设置是否在拖放时显示指示器。 |
+
+
 
 ## 容器控件
 
 ### QGroupBox分组框控件
+
+`QGroupBox` 是一个用于将相关控件分组的容器控件，通常用于在用户界面中组织和区分功能区域。它可以包含标题，帮助用户理解组内控件的关系。
+
+### 常用方法
+
+| 方法                         | 描述                       |
+| ---------------------------- | -------------------------- |
+| `setTitle(title: str)`       | 设置分组框的标题。         |
+| `title() -> str`             | 获取当前分组框的标题。     |
+| `setCheckable(bool)`         | 设置分组框是否可选中。     |
+| `isCheckable() -> bool`      | 获取分组框是否可选中。     |
+| `setChecked(bool)`           | 设置分组框的选中状态。     |
+| `isChecked() -> bool`        | 获取当前分组框的选中状态。 |
+| `setLayout(layout: QLayout)` | 设置分组框的布局。         |
+| `layout() -> QLayout`        | 获取分组框的布局。         |
+| `setEnabled(bool)`           | 设置分组框是否可用。       |
+| `isEnabled() -> bool`        | 获取分组框是否可用。       |
+| `setStyleSheet(style: str)`  | 设置分组框的样式表。       |
+
+
 
 ### QTabWidget选项卡控件
 
